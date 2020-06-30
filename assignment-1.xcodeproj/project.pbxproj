@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F40B3B7D24AAF38D00117B80 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40B3B7C24AAF38D00117B80 /* main.cpp */; };
+		F40B3B7D24AAF38D00117B80 /* explore_econdata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40B3B7C24AAF38D00117B80 /* explore_econdata.cpp */; };
+		F40B3B8524AAF3BB00117B80 /* econdata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40B3B8324AAF3BB00117B80 /* econdata.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +25,10 @@
 
 /* Begin PBXFileReference section */
 		F40B3B7924AAF38D00117B80 /* assignment-1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "assignment-1"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F40B3B7C24AAF38D00117B80 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F40B3B7C24AAF38D00117B80 /* explore_econdata.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = explore_econdata.cpp; sourceTree = "<group>"; };
+		F40B3B8324AAF3BB00117B80 /* econdata.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = econdata.cpp; sourceTree = "<group>"; };
+		F40B3B8424AAF3BB00117B80 /* econdata.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = econdata.hpp; sourceTree = "<group>"; };
+		F40B3B8624AB0F6F00117B80 /* test_data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_data.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +61,10 @@
 		F40B3B7B24AAF38D00117B80 /* assignment-1 */ = {
 			isa = PBXGroup;
 			children = (
-				F40B3B7C24AAF38D00117B80 /* main.cpp */,
+				F40B3B8624AB0F6F00117B80 /* test_data.txt */,
+				F40B3B7C24AAF38D00117B80 /* explore_econdata.cpp */,
+				F40B3B8324AAF3BB00117B80 /* econdata.cpp */,
+				F40B3B8424AAF3BB00117B80 /* econdata.hpp */,
 			);
 			path = "assignment-1";
 			sourceTree = "<group>";
@@ -119,7 +126,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F40B3B7D24AAF38D00117B80 /* main.cpp in Sources */,
+				F40B3B8524AAF3BB00117B80 /* econdata.cpp in Sources */,
+				F40B3B7D24AAF38D00117B80 /* explore_econdata.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
