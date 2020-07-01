@@ -18,6 +18,7 @@
  * Post-Conditions: Returns a set array
  */
 
+// The symbol "*" is used to display the content of the memory location pointed to.
 struct state* allocate_states(int n) {
     struct state* states = new state[n];
     return states;

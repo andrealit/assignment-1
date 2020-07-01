@@ -9,17 +9,32 @@
 /* Begin PBXBuildFile section */
 		F40B3B7D24AAF38D00117B80 /* explore_econdata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40B3B7C24AAF38D00117B80 /* explore_econdata.cpp */; };
 		F40B3B8524AAF3BB00117B80 /* econdata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40B3B8324AAF3BB00117B80 /* econdata.cpp */; };
+		F47A8F7724AD05FA0090E272 /* test_0.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = F47A8F7624ACDA910090E272 /* test_0.txt */; };
+		F47A8F7824AD06000090E272 /* test_data.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = F40B3B8624AB0F6F00117B80 /* test_data.txt */; };
+		F47A8F7A24AD07100090E272 /* test_0.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = F47A8F7624ACDA910090E272 /* test_0.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F40B3B7724AAF38D00117B80 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 16;
 			files = (
+				F47A8F7824AD06000090E272 /* test_data.txt in CopyFiles */,
+				F47A8F7724AD05FA0090E272 /* test_0.txt in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		F47A8F7924AD06FF0090E272 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				F47A8F7A24AD07100090E272 /* test_0.txt in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -29,6 +44,7 @@
 		F40B3B8324AAF3BB00117B80 /* econdata.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = econdata.cpp; sourceTree = "<group>"; };
 		F40B3B8424AAF3BB00117B80 /* econdata.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = econdata.hpp; sourceTree = "<group>"; };
 		F40B3B8624AB0F6F00117B80 /* test_data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_data.txt; sourceTree = "<group>"; };
+		F47A8F7624ACDA910090E272 /* test_0.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_0.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +77,7 @@
 		F40B3B7B24AAF38D00117B80 /* assignment-1 */ = {
 			isa = PBXGroup;
 			children = (
+				F47A8F7624ACDA910090E272 /* test_0.txt */,
 				F40B3B8624AB0F6F00117B80 /* test_data.txt */,
 				F40B3B7C24AAF38D00117B80 /* explore_econdata.cpp */,
 				F40B3B8324AAF3BB00117B80 /* econdata.cpp */,
@@ -79,6 +96,7 @@
 				F40B3B7524AAF38D00117B80 /* Sources */,
 				F40B3B7624AAF38D00117B80 /* Frameworks */,
 				F40B3B7724AAF38D00117B80 /* CopyFiles */,
+				F47A8F7924AD06FF0090E272 /* CopyFiles */,
 			);
 			buildRules = (
 			);
