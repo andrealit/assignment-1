@@ -19,9 +19,9 @@
  */
 
 // The symbol "*" is used to display the content of the memory location pointed to.
-struct state* allocate_states(int n) {
-    struct state* states = new state[n];
-    return states;
+struct state* allocate_states(int numStates) {
+    struct state* stateArray = new state[numStates];
+    return stateArray;
 }
 
 /*
@@ -32,9 +32,9 @@ struct state* allocate_states(int n) {
  * Post-Conditions: Returns a set array
  *
  */
-struct county* allocate_counties(int n) {
-    struct county* counties = new struct county[n];
-    return counties;
+struct county* allocate_counties(int numCounties) {
+    struct county* countyArray = new struct county[numCounties];
+    return countyArray;
 }
 
 /*
@@ -44,12 +44,22 @@ struct county* allocate_counties(int n) {
  * Pre-Conditions: must have a struct state present
  * Post-Conditions: must be deleted after to prevent data chaos
  */
-void read_state_data(struct state *s, int numState, ifstream &file) {
-    file >> s[numState].name
-    >> s[numState].unemployed2007
-    >> s[numState].unemployed2015
-    >> s[numState].medianIncome
-    >> s[numState].numCounties;
+void read_state_data(struct state *stateArray, int numStates, ifstream &infile) {
+    
+    string line;
+//    infile >> s[numState].name
+//    >> s[numState].unemployed2007
+//    >> s[numState].unemployed2015
+//    >> s[numState].medianIncome
+//    >> s[numState].numCounties;
+    
+
+    // assign the read state data to members of the array
+        getline(infile, line);
+        istringstream is2(line);
+        is2 >> stateArray[numStates].name >> stateArray[numStates].unemployed2007 >> stateArray[numStates].unemployed2015 >> stateArray[numStates].medianIncome >> stateArray[numStates].numCounties;
+    
+    
 }
 
 /*
@@ -59,12 +69,20 @@ void read_state_data(struct state *s, int numState, ifstream &file) {
 * Pre-Conditions: must have a struct state present
 * Post-Conditions: no data left out, should be deleted
 */
-void read_county_data(struct county *c, int numCounties, ifstream &file){
+void read_county_data(struct county *countyArray, int numCounties, ifstream &infile){
+    
+    string line;
+    
     for (int i = 0; i < numCounties; i++) {
-        file >> c[i].name
-        >> c[i].unemployed2007
-        >> c[i].unemployed2015
-        >> c[i].medianIncome;
+//        file >> c[i].name
+//        >> c[i].unemployed2007
+//        >> c[i].unemployed2015
+//        >> c[i].medianIncome;
+        
+        getline(infile, line);
+        istringstream is3(line);
+        is3 >> countyArray[i].name >> countyArray[i].unemployed2007 >> countyArray[i].unemployed2015 >> countyArray[i].medianIncome;
+        
     }
 }
 

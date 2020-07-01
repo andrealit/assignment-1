@@ -40,11 +40,12 @@ int main(int argc, char** argv) {
         cout << "The file opened!" << endl;
     }
     
+    cout << endl;
+    
     // Read and print out the numState
     getline(infile, line);
     istringstream is1(line);
     is1 >> numStates;
-    
     cout << "Number of States = " << numStates << endl;
     
     // Get State
@@ -58,41 +59,45 @@ int main(int argc, char** argv) {
 //    cout << "2015 Unemployment % = " << st1.unemployed2015 << endl;
 //    cout << "Median Income = " << st1.medianIncome << endl;
 //    cout << "Number of Counties = " << st1.numCounties << endl;
+    
+    // create the array to store the states
+    struct state *stateArray = allocate_states(numStates);
   
-    state* stateArray = new state[numStates];
+    //state* stateArray = new state[numStates];
     
     // loop to go through each state
     for (int i = 0; i < numStates; i++) {
-        // assign the read state data to members of the array
-        getline(infile, line);
-        istringstream is2(line);
-        is2 >> stateArray[i].name >> stateArray[i].unemployed2007 >> stateArray[i].unemployed2015 >> stateArray[i].medianIncome >> stateArray[i].numCounties;
+
+        // read and store the state data
+        read_state_data(stateArray,i,infile);
         
+        // create the array to store counties
+        stateArray[i].counties = allocate_counties(stateArray[i].numCounties);
+                
+        // read and store county data
+        read_county_data(stateArray[i].counties, stateArray[i].numCounties, infile);
+        
+    }
+    
+    // print out
+    for (int i = 0; i < numStates; i++) {
         cout << "State Name = " << stateArray[i].name << endl;
         cout << "2007 Unemployment % = " << stateArray[i].unemployed2007 << endl;
         cout << "2015 Unemployment % = " << stateArray[i].unemployed2015 << endl;
         cout << "Median Income = " << stateArray[i].medianIncome << endl;
         cout << "Number of Counties = " << stateArray[i].numCounties << endl;
         cout << endl;
+
+        for (int j = 0; j < stateArray[i].numCounties; j++) {
+
+                    cout << "County Name = " << stateArray[i].counties[j].name << endl;
+                    cout << "2007 Unemployment % = " << stateArray[i].counties[j].unemployed2007 << endl;
+                    cout << "2015 Unemployment % = " << stateArray[i].counties[j].unemployed2015 << endl;
+                    cout << "Median Income = " << stateArray[i].counties[j].medianIncome << endl;
+                    cout << endl;
+        }
     }
-    
 
-
-//    // created states here
-//    struct state *states = allocate_states(numStates);
-//
-//    // loop here to read all states
-//    for (int i = 0; i < numStates; i++) {
-//        // read the state, store
-//        read_state_data(states,i,infile);
-//
-//        // creating the counties in the states
-//        states[i].counties = allocate_counties(states[i].numCounties);
-//
-//        // read the county data here
-//        read_county_data(states[i].counties,states[i].numCounties,infile);
-//    }
-//
     
 //    // Display a MENU INTERFACE
 //    do {
