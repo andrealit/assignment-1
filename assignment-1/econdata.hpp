@@ -6,10 +6,9 @@
 //  Copyright © 2020 Andrea Tongsak. All rights reserved.
 //
 
-#ifndef econdata_hpp
-#define econdata_hpp
+#ifndef TONGSAK_ECONDATA_HPP
+#define TONGSAK_ECONDATA_HPP
 
-#include <stdio.h>
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
@@ -18,6 +17,13 @@
 #include <string>
 using namespace std;
 
+struct county {
+    string name;
+    float unemployed2007;
+    float unemployed2015;
+    int medianIncome;
+};
+
 struct state {
     string name;
     float unemployed2007;
@@ -25,13 +31,6 @@ struct state {
     int medianIncome;
     struct county* counties;
     int numCounties;
-};
-
-struct county {
-    string name;
-    float unemployed2007;
-    float unemployed2015;
-    int medianIncome;
 };
 
 // allocates an array of a specified number of states

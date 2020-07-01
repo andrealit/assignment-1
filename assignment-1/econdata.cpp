@@ -10,7 +10,6 @@
 #include "econdata.hpp"
 // the implementations of the functions prototyped in econdata.hpp
 
-
 /*
  * Function: CreateStates
  * Description: Will allocate space for state struct by creating an array
@@ -57,7 +56,7 @@ void read_state_data(struct state *s, int numState, ifstream &file) {
 * Description: using ifstream to funnel data into the array
 * Parameters: takes the struct, the number of counties, and the ifstream
 * Pre-Conditions: must have a struct state present
-* Post-Conditions: no data left out, should be deleted?
+* Post-Conditions: no data left out, should be deleted
 */
 void read_county_data(struct county *c, int numCounties, ifstream &file){
     for (int i = 0; i < numCounties; i++) {
@@ -68,21 +67,21 @@ void read_county_data(struct county *c, int numCounties, ifstream &file){
     }
 }
 
-/*
-* Function: free_state_data
-* Description: releases all the data to the given array (memory clear)
-* Parameters: takes the struct, the number of states
-* Pre-Conditions: memory exists
-* Post-Conditions: none
-*/
-void free_state_data(struct state *stateInput, int numStates) {
-    // using the loop to clear each state one by one here
-    for (int i = 0; i<numStates; i++) {
-        // clear the data here
-        delete [] stateInput[i].counties;
-    }
-    delete [] stateInput;
-}
+///*
+//* Function: free_state_data
+//* Description: releases all the data to the given array (memory clear)
+//* Parameters: takes the struct, the number of states
+//* Pre-Conditions: memory exists
+//* Post-Conditions: none
+//*/
+//void free_state_data(struct state *stateInput, int numStates) {
+//    // using the loop to clear each state one by one here
+//    for (int i = 0; i<numStates; i++) {
+//        // clear the data here
+//        delete [] stateInput[i].counties;
+//    }
+//    delete [] stateInput;
+//}
 
 /*
  * Function: highIncome
@@ -91,60 +90,60 @@ void free_state_data(struct state *stateInput, int numStates) {
  * Preconditions: the selection must be selected
  * Postconditions: none
  */
-void highIncome(struct state *stateInput, int numStates) {
-    // use a loop here? the sort algorithm?
-    
-    // what variables do you need here?
-    // name, the income data
-    string stateName;
-    float incomeData;
-    int tempInt = 0;
-    
-    stateName = stateInput[0].name;
-    
-    // loop is going through each state
-    // starting from 1 because the first value in data is actually the number of the states (so irrelevant)
-    for(int i = 1; i < numStates; ++i) {
-        // must check if the next one is greater or less than the next?
-        if(stateInput[tempInt].medianIncome < stateInput[i].medianIncome) {
-            // order needs rearranging
-            stateName = stateInput[i].name;
-            incomeData = stateInput[i].medianIncome;
-            tempInt = i;
-        }
-    }
-    
-    cout << "\n State with Highest Median Income \n";
-    cout << "name: " << stateName << "\n";
-    cout << "median income: " << incomeData << "\n";
-}
-
-/*
- * Function: lowIncome
- * Description: sorts to find which state has the lowest income
- * Parameters: takes in the state, the number of states
- * Preconditions: the selection must be selected
- * Postconditions: none
- */
-void lowIncome(struct state *stateInput, int numStates) {
-    string stateName;
-    float incomeData;
-    int tempInt = 0;
-    
-    stateName = stateInput[0].name;
-    
-    for(int i = 1; i < numStates; numStates++) {
-        if(stateInput[tempInt].medianIncome > stateInput[i].medianIncome) {
-            // order is already good
-            stateName = stateInput[i].name;
-            tempInt = i;
-        }
-    }
-    
-    cout << "\n State with Lowest Median Income \n";
-    cout << "name: " << stateName;
-    cout << "median income: " << incomeData << "\n";
-}
+//void highIncome(struct state *stateInput, int numStates) {
+//    // use a loop here? the sort algorithm?
+//
+//    // what variables do you need here?
+//    // name, the income data
+//    string stateName;
+//    float incomeData;
+//    int tempInt = 0;
+//
+//    stateName = stateInput[0].name;
+//
+//    // loop is going through each state
+//    // starting from 1 because the first value in data is actually the number of the states (so irrelevant)
+//    for(int i = 1; i < numStates; ++i) {
+//        // must check if the next one is greater or less than the next?
+//        if(stateInput[tempInt].medianIncome < stateInput[i].medianIncome) {
+//            // order needs rearranging
+//            stateName = stateInput[i].name;
+//            incomeData = stateInput[i].medianIncome;
+//            tempInt = i;
+//        }
+//    }
+//
+//    cout << "\n State with Highest Median Income \n";
+//    cout << "name: " << stateName << "\n";
+//    cout << "median income: " << incomeData << "\n";
+//}
+//
+///*
+// * Function: lowIncome
+// * Description: sorts to find which state has the lowest income
+// * Parameters: takes in the state, the number of states
+// * Preconditions: the selection must be selected
+// * Postconditions: none
+// */
+//void lowIncome(struct state *stateInput, int numStates) {
+//    string stateName;
+//    float incomeData;
+//    int tempInt = 0;
+//
+//    stateName = stateInput[0].name;
+//
+//    for(int i = 1; i < numStates; numStates++) {
+//        if(stateInput[tempInt].medianIncome > stateInput[i].medianIncome) {
+//            // order is already good
+//            stateName = stateInput[i].name;
+//            tempInt = i;
+//        }
+//    }
+//
+//    cout << "\n State with Lowest Median Income \n";
+//    cout << "name: " << stateName;
+//    cout << "median income: " << incomeData << "\n";
+//}
 
 /*
  * Function: highUnemployment
@@ -174,15 +173,15 @@ void lowIncome(struct state *stateInput, int numStates) {
 
 
 
-/*
- * Function: highUnemployment
- * Description:
- * Parameters:
- * Preconditions:
- * Postconditions:
- */
-void employSort() {
-    
-}
+///*
+// * Function: highUnemployment
+// * Description:
+// * Parameters:
+// * Preconditions:
+// * Postconditions:
+// */
+//void employSort() {
+//
+//}
 
  
