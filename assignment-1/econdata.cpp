@@ -18,7 +18,6 @@
  * Pre-Conditions: Can only operate with file input
  * Post-Conditions: Returns a set array
  */
-
 // The symbol "*" is used to display the content of the memory location pointed to.
 struct state* allocate_states(int numStates) {
     struct state* stateArray = new state[numStates];
@@ -296,10 +295,11 @@ void incomeSort(struct state* stateInput, int numStates) {
 void countyFunc(struct state* stateInput, int numStates) {
     // Declare variables
     string statename;
-    float maxIncome = stateInput[0].medianIncome;
-    float minIncome = stateInput[0].medianIncome;
-    float highUnemp;
-    float lowUnemp;
+    string countyName = stateInput[numStates].counties[0].name;
+    float maxIncome = stateInput[0].counties[0].medianIncome;
+    float minIncome = stateInput[0].counties[0].medianIncome;
+    float highUnemp = stateInput[0].counties[0].unemployed2015;
+    float lowUnemp = stateInput[0].counties[0].unemployed2015;;
     int tempInt;
     int countySelect;
     int stateSelect;
@@ -347,33 +347,106 @@ void countyFunc(struct state* stateInput, int numStates) {
             cin.ignore();
         }
         
-        if (countySelect > 0 && countySelect < 6){
+        if (countySelect > 0 && countySelect <= 6){
             switch (countySelect) {
-                case 1:
-                    // Print county with highest median income
-                    int tempInt = 0;
-                    string countyName = stateInput[numStates].counties[0].name;
                     
+                case 1: {// Print county with highest median income
+                    tempInt = 0;
                     for (int i = 0; i < stateInput[numStates].numCounties; i++) {
                         // must check if the next one is greater than the current
-                        if (stateInput[tempInt].medianIncome < stateInput[i].medianIncome) {
-                            countyName = stateInput[i].name;
-                            maxIncome = stateInput[i].medianIncome;
+                        if (stateInput[numStates].counties[tempInt].medianIncome < stateInput[numStates].counties[tempInt].medianIncome) {
+                            countyName = stateInput[numStates].counties[i].name;
+                            maxIncome = stateInput[numStates].counties[i].medianIncome;
                             tempInt = i;
                         }
                     }
-                    
                     cout << "County with Highest Median Income \n";
                     cout << "County Name: " << countyName << endl;
                     cout << "Median Income: " << maxIncome << endl;
                     cout << endl;
-                    
-                    
-                    
-                    
-                    
-                    
                     break;
+                }
+                    
+                case 2: { // Print county with lowest median income
+                    tempInt = 0;
+                    for (int i = 0; i < stateInput[numStates].numCounties; i++) {
+                        // must check if the next one is greater than the current
+                        if (stateInput[numStates].counties[tempInt].medianIncome > stateInput[numStates].counties[i].medianIncome) {
+                            countyName = stateInput[numStates].counties[i].name;
+                            minIncome = stateInput[numStates].counties[i].medianIncome;
+                            tempInt = i;
+                        }
+                    }
+                    cout << "County with Lowest Median Income \n";
+                    cout << "County Name: " << countyName << endl;
+                    cout << "Median Income: " << minIncome << endl;
+                    cout << endl;
+                    break;
+                }
+                    
+                case 3: { // Print county with highest unemployment
+                    tempInt = 0;
+                    for (int i = 0; i < stateInput[i].numCounties; i++) {
+                        if (stateInput[numStates].counties[tempInt].unemployed2015 < stateInput[numStates].counties[i].unemployed2015) {
+                            countyName = stateInput[numStates].counties[i].name;
+                            highUnemp = stateInput[numStates].counties[i].unemployed2015;
+                            tempInt = i;
+                        }
+                    }
+                    cout << "County with Highest Unemployment \n";
+                    cout << "County Name: " << countyName << endl;
+                    cout << "2015 Unemployment %: " << highUnemp << endl;
+                    cout << endl;
+                    break;
+                }
+                    
+                case 4: { // Print county with lowest unemployment
+                    tempInt = 0;
+                    for(int i = 0; i < stateInput[i].numCounties; i++) {
+                        if (stateInput[numStates].counties[tempInt].unemployed2015 > stateInput[numStates].counties[i].unemployed2015) {
+                            countyName = stateInput[numStates].counties[i].name;
+                            lowUnemp = stateInput[numStates].counties[i].unemployed2015;
+                            tempInt = i;
+                        }
+                    }
+                    cout << "County with Lowest 2015 Unemployment \n";
+                    cout << "County Name: " << countyName << endl;
+                    cout << "2015 Unemployment %: " << lowUnemp << endl;
+                    cout << endl;
+                    break;
+                }
+                    
+                case 5: { // Sort county data based on unemployment change
+                    for (int i = 0; i < numStates; i++) {
+                        for (int j = 0; j < numStates; j++) {
+                            int diffOne = stateInput[numStates].counties[j].unemployed2007 - stateInput[numStates].counties[j+1].unemployed2015;
+                            int diffTwo = stateInput[numStates].counties[j+1].unemployed2007 - stateInput[numStates].counties[j+1].unemployed2015;
+                            
+                            if (diffOne < diffTwo) {
+                                struct county tempC = stateInput[numStates].counties[j];
+                                stateInput[numStates].counties[j] = stateInput[numStates].counties[j+1];
+                                stateInput[numStates].counties[j+1] = tempC;
+                            }
+                        }
+                    }
+                    cout << "County Sorted by Change in Unemployment (Largest decrease to largest increase)  \n";
+                    cout << ">>Largest Decrease" << endl;
+                    for (int i = 0; i < stateInput[numStates].numCounties; i++) {
+                        cout << stateInput[numStates].counties[i].name << endl;
+                    }
+                    cout << ">>Largest Increase" << endl;
+                    cout << endl;
+                    break;
+                }
+                    
+                case 6: { // Sort county data based on income
+                    for (int i = 0; i < numStates; i++) {
+                        for (int j = 0; j < numStates; j++) {
+                            
+                        }
+                    }
+                    break;
+                }
             }
             
             

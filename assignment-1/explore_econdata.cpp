@@ -62,25 +62,6 @@ int main(int argc, char** argv) {
         
     }
     
-    // print out
-//    for (int i = 0; i < numStates; i++) {
-//        cout << "State Name = " << stateArray[i].name << endl;
-//        cout << "2007 Unemployment % = " << stateArray[i].unemployed2007 << endl;
-//        cout << "2015 Unemployment % = " << stateArray[i].unemployed2015 << endl;
-//        cout << "Median Income = " << stateArray[i].medianIncome << endl;
-//        cout << "Number of Counties = " << stateArray[i].numCounties << endl;
-//        cout << endl;
-//
-//        for (int j = 0; j < stateArray[i].numCounties; j++) {
-//
-//                    cout << "County Name = " << stateArray[i].counties[j].name << endl;
-//                    cout << "2007 Unemployment % = " << stateArray[i].counties[j].unemployed2007 << endl;
-//                    cout << "2015 Unemployment % = " << stateArray[i].counties[j].unemployed2015 << endl;
-//                    cout << "Median Income = " << stateArray[i].counties[j].medianIncome << endl;
-//                    cout << endl;
-//        }
-//    }
-    
     cout << "STATE MAIN MENU" << endl;
     cout << "1. Print the state with the highest median household income." << endl;
     cout << "2. Print the state with the lowest median household income." << endl;
@@ -129,7 +110,13 @@ int main(int argc, char** argv) {
                 case 6:
                     incomeSort(stateArray, numStates);
                     break;
-
+                case 7:
+                    countyFunc(stateArray, numStates);
+                    break;
+                case 8:
+                    break;
+                    
+                    
             }
             
             
