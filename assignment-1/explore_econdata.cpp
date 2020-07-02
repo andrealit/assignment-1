@@ -44,7 +44,6 @@ int main(int argc, char** argv) {
     getline(infile, line);
     istringstream is1(line);
     is1 >> numStates;
-//    cout << "Number of States = " << numStates << endl;
     
     // Create the array to store the states
     struct state *stateArray = allocate_states(numStates);
@@ -81,10 +80,8 @@ int main(int argc, char** argv) {
 //                    cout << endl;
 //        }
 //    }
-
-    // WORKS UP TO THIS POINT and reads data
     
-    cout << "MENU INTERFACE" << endl;
+    cout << "STATE MAIN MENU" << endl;
     cout << "1. Print the state with the highest median household income." << endl;
     cout << "2. Print the state with the lowest median household income." << endl;
     cout << "3. Print the state with the highest unemployment in 2015." << endl;
@@ -105,7 +102,8 @@ int main(int argc, char** argv) {
         // Condition for cin
         if(cin.fail()) {
             // clear data
-            // close?
+            cin.clear();
+            cin.ignore();
         }
         
         // When selection is made correctly
@@ -127,6 +125,9 @@ int main(int argc, char** argv) {
                     break;
                 case 5:
                     employSort(stateArray, numStates);
+                    break;
+                case 6:
+                    incomeSort(stateArray, numStates);
                     break;
 
             }

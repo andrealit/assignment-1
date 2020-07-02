@@ -110,7 +110,7 @@ void highIncome(struct state *stateInput, int numStates) {
     stateName = stateInput[0].name;
 
     for(int i = 1; i < numStates; i++) {
-        // must check if the next one is greater or less than the next?
+        // must check if the next one is greater or less than the current?
         if(stateInput[tempInt].medianIncome < stateInput[i].medianIncome) {
             // order needs to switch
             stateName = stateInput[i].name;
@@ -247,13 +247,143 @@ void employSort(struct state* stateInput, int numStates) {
     }
     
     cout << "States Sorted by Change in Unemployment (Largest decrease to largest increase)  \n";
-    cout << "Largest Decrease" << endl;
+    cout << ">>Largest Decrease" << endl;
     for (int i = 0; i < numStates; i++) {
         cout << stateInput[i].name << endl;
     }
-    cout << "Largest Increase" << endl;
+    cout << ">>Largest Increase" << endl;
+    cout << endl;
 }
 
+/*
+* Function: incomeSort
+* Description: print the states in sorted order by median income
+* Parameters: takes in state, the number of states
+* Preconditions: the selection is chosen
+* Postconditions: none
+*/
+void incomeSort(struct state* stateInput, int numStates) {
+    string statename;
+    
+    // outer loop
+    for(int i = 0; i < numStates; i++) {
+        // inner loop
+        for(int j = 0; j < numStates; j++) {
+            if (stateInput[j].medianIncome < stateInput[j+1].medianIncome) {
+                struct state temp = stateInput[j];
+                stateInput[j] = stateInput[j+1];
+                stateInput[j+1] = temp;
+            }
+        }
+    }
+    
+    cout << "States Sorted by Median Household Income (High to Low) \n";
+    for (int i = 0; i < numStates; i++) {
+        cout << "State: " << stateInput[i].name << " Median Income: " << stateInput[i].medianIncome << endl;
+    }
+    cout << endl;
+    
+}
+
+
+/*
+* Function: countyFunc
+* Description: print the states in sorted order by median income
+* Parameters: takes in state, the number of states
+* Preconditions: the selection from 7 choices is chosen from menu
+* Postconditions: none
+*/
+void countyFunc(struct state* stateInput, int numStates) {
+    // Declare variables
+    string statename;
+    float maxIncome = stateInput[0].medianIncome;
+    float minIncome = stateInput[0].medianIncome;
+    float highUnemp;
+    float lowUnemp;
+    int tempInt;
+    int countySelect;
+    int stateSelect;
+    
+    // Let the user select a state
+    do {
+        cout << "Select a state: " << endl;
+        
+        for (int i = 0; i < numStates; i++) {
+            cout << i << "." << stateInput[i].name << endl;
+        }
+        
+        if(cin.fail()) {
+            // clear data
+            cin.clear();
+            cin.ignore();
+        }
+        
+        cin >> stateSelect;
+        
+        if(stateSelect < 0 || stateSelect > numStates - 1) {
+            cout << "State selection is invalid, try again." << endl;
+        }
+        
+    } while(stateSelect < 0 || stateSelect > (numStates-1));
+    
+    // Print out the county menu options once a state is selected
+    cout << endl;
+    cout << "COUNTY MAIN MENU" << endl;
+    cout << "1. Print county with highest median income." << endl;
+    cout << "2. Print county with lowest median income." << endl;
+    cout << "3. Print county with highest unemployment in 2015." << endl;
+    cout << "4. Print county with lowest unemployment in 2015." << endl;
+    cout << "5. Print the counties in sorted order by change in unemployment from 2007 to 2015. (Largest decrease then largest increase)" << endl;
+    cout << "6. Print the county in sorted order based on median household income." << endl;
+    cout << endl;
+    
+    
+    // Have the county specific functions for each type
+    do {
+        cin >> countySelect;
+        
+        if(cin.fail()) {
+            cin.clear();
+            cin.ignore();
+        }
+        
+        if (countySelect > 0 && countySelect < 6){
+            switch (countySelect) {
+                case 1:
+                    // Print county with highest median income
+                    int tempInt = 0;
+                    string countyName = stateInput[numStates].counties[0].name;
+                    
+                    for (int i = 0; i < stateInput[numStates].numCounties; i++) {
+                        // must check if the next one is greater than the current
+                        if (stateInput[tempInt].medianIncome < stateInput[i].medianIncome) {
+                            countyName = stateInput[i].name;
+                            maxIncome = stateInput[i].medianIncome;
+                            tempInt = i;
+                        }
+                    }
+                    
+                    cout << "County with Highest Median Income \n";
+                    cout << "County Name: " << countyName << endl;
+                    cout << "Median Income: " << maxIncome << endl;
+                    cout << endl;
+                    
+                    
+                    
+                    
+                    
+                    
+                    break;
+            }
+            
+            
+        } else {
+            cout << "Select a county MENU between 1 to 6.";
+        }
+        
+    } while (countySelect < 0 || countySelect > 6);
+    
+}
 
 
  

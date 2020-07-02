@@ -65,12 +65,10 @@ void lowUnemployment(struct state*, int);
 // sorts the state by the unemployment rates
 void employSort(struct state*, int);
 
-// sorts
+// sorts the state by income
 void incomeSort(struct state*, int);
-void countyEmploySort(struct state*, int);
-void countyIncomeSort(struct state*, int);
 
-// compare_double
-bool compare_double(double x, double y, double epsilon);
+// county functions
+void countyFunc(struct state*, int);
 
 #endif /* econdata_hpp */
