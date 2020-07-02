@@ -8,6 +8,7 @@
  */
 
 #include "econdata.hpp"
+
 // the implementations of the functions prototyped in econdata.hpp
 
 /*
@@ -103,24 +104,24 @@ void highIncome(struct state *stateInput, int numStates) {
     
     // Variables
     string stateName;
-    float incomeData;
+    float maxIncome = stateInput[0].medianIncome;
     int tempInt = 0;
 
     stateName = stateInput[0].name;
 
-    for(int i = 0; i < numStates; i++) {
+    for(int i = 1; i < numStates; i++) {
         // must check if the next one is greater or less than the next?
         if(stateInput[tempInt].medianIncome < stateInput[i].medianIncome) {
             // order needs to switch
             stateName = stateInput[i].name;
-            incomeData = stateInput[i].medianIncome;
+            maxIncome = stateInput[i].medianIncome;
             tempInt = i;
         }
     }
 
     cout << "State with Highest Median Income \n";
     cout << "State Name: " << stateName << endl;
-    cout << "Median Income: " << incomeData << endl;
+    cout << "Median Income: " << maxIncome << endl;
     cout << endl;
 }
 
@@ -133,22 +134,23 @@ void highIncome(struct state *stateInput, int numStates) {
  */
 void lowIncome(struct state *stateInput, int numStates) {
     string stateName;
-    //float incomeData;
+    float minIncome = stateInput[0].medianIncome;
     int tempInt = 0;
 
     stateName = stateInput[0].name;
 
-    for(int i = 0; i < numStates; numStates++) {
+    for(int i = 1; i < numStates; i++) {
         if(stateInput[tempInt].medianIncome > stateInput[i].medianIncome) {
-            // order is already good
+            // the min state is the next
             stateName = stateInput[i].name;
+            minIncome = stateInput[i].medianIncome;
             tempInt = i;
         }
     }
 
     cout << "State with Lowest Median Income \n";
     cout << "State Name: " << stateName << endl;
-    cout << "Median Income: " << stateInput[tempInt].medianIncome << endl;
+    cout << "Median Income: " << minIncome << endl;
     cout << endl;
 }
 
@@ -159,37 +161,99 @@ void lowIncome(struct state *stateInput, int numStates) {
  * Preconditions: the selection is chosen
  * Postconditions: none
  */
-void highUnemployment(struct state *stateInput, int numStates) {
+void highUnemployment(struct state* stateInput, int numStates) {
     string stateName;
-    float employData;
+    float highUnemp = stateInput[0].unemployed2015;
     int tempInt = 0;
 
     stateName = stateInput[0].name;
 
-    for(int i = 0; i < numStates; numStates++) {
+    for(int i = 1; i < numStates; i++) {
+        
         if(stateInput[tempInt].unemployed2015 < stateInput[i].unemployed2015) {
             // this means they must be switched
             stateName = stateInput[i].name;
-            employData = stateInput[i].unemployed2015;
+            highUnemp = stateInput[i].unemployed2015;
+            tempInt = i;
         }
     }
 
     cout << "State with Highest 2015 Unemployment \n";
     cout << "State Name: " << stateName << endl;
-    cout << "2015 Unemployment %: " << employData << endl;
+    cout << "2015 Unemployment %: " << highUnemp << endl;
+    cout << endl;
+}
+
+/*
+ * Function: lowUnemployment
+ * Description: sorts to find low unemployment in 2015
+ * Parameters: takes in state, the number of states
+ * Preconditions: the selection is chosen
+ * Postconditions: none
+ */
+void lowUnemployment(struct state* stateInput, int numStates) {
+    string stateName;
+    float lowUnemp = stateInput[0].unemployed2015;
+    int tempInt = 0;
+
+    stateName = stateInput[0].name;
+
+    for(int i = 1; i < numStates; i++) {
+        
+        if(stateInput[tempInt].unemployed2015 > stateInput[i].unemployed2015) {
+            // this means they must be switched
+            stateName = stateInput[i].name;
+            lowUnemp = stateInput[i].unemployed2015;
+            tempInt = i;
+        }
+    }
+
+    cout << "State with Lowest 2015 Unemployment \n";
+    cout << "State Name: " << stateName << endl;
+    cout << "2015 Unemployment %: " << lowUnemp << endl;
+    cout << endl;
+}
+
+/*
+* Function: employSort
+* Description: print the states in sorted order by change in unemployment from 2007 to 2015
+* Parameters: takes in state, the number of states
+* Preconditions: the selection is chosen
+* Postconditions: none
+*/
+void employSort(struct state* stateInput, int numStates) {
+    string statename;
+    
+    // outer loop
+    for(int i = 0; i < numStates; i++) {
+        // inner loop
+        for(int j = 0; j < numStates; j++) {
+            
+            int diffOne = stateInput[j].unemployed2007 - stateInput[j].unemployed2015;
+            int diffTwo = stateInput[j+1].unemployed2007 - stateInput[j+1].unemployed2015;
+            
+            // one is less than the other (so must be switched)
+            // EX: SMALLER, BIGGER
+            if(diffOne < diffTwo) {
+                // store the BIGGER array in temp
+                struct state temp = stateInput[j];
+                // assign the SMALLER into the previous
+                stateInput[j] = stateInput[j+1];
+                // assign the BIGGER into the one after the SMALLER
+                // EX: BIGGER, SMALLER
+                stateInput[j+1] = temp;
+            }
+        }
+    }
+    
+    cout << "States Sorted by Change in Unemployment (Largest decrease to largest increase)  \n";
+    cout << "Largest Decrease" << endl;
+    for (int i = 0; i < numStates; i++) {
+        cout << stateInput[i].name << endl;
+    }
+    cout << "Largest Increase" << endl;
 }
 
 
-
-///*
-// * Function: highUnemployment
-// * Description:
-// * Parameters:
-// * Preconditions:
-// * Postconditions:
-// */
-//void employSort() {
-//
-//}
 
  

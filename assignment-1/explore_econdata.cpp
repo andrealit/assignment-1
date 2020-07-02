@@ -84,19 +84,20 @@ int main(int argc, char** argv) {
 
     // WORKS UP TO THIS POINT and reads data
     
+    cout << "MENU INTERFACE" << endl;
+    cout << "1. Print the state with the highest median household income." << endl;
+    cout << "2. Print the state with the lowest median household income." << endl;
+    cout << "3. Print the state with the highest unemployment in 2015." << endl;
+    cout << "4. Print the state with the lowest unemployment in 2015." << endl;
+    cout << "5. Print the states in sorted order by change in unemployment from 2007 to 2015. (Largest decrease then largest increase)" << endl;
+    cout << "6. Print the states in sorted order based on median household income." << endl;
+    cout << "7. Select a state and then..." << endl;
+    cout << "8. Quit the program." << endl;
+    cout << endl;
     
     // Display a MENU INTERFACE
     do {
-        cout << "MENU INTERFACE" << endl;
-        cout << "1. Print the state with the highest median household income." << endl;
-        cout << "2. Print the state with the lowest median household income." << endl;
-        cout << "3. Print the state with the highest unemployment in 2015." << endl;
-        cout << "4. Print the state with the lowest unemployment in 2015." << endl;
-        cout << "5. Print the states in sorted order by change in unemployment from 2007 to 2015. (Largest decrease then largest increase)" << endl;
-        cout << "6. Print the states in sorted order based on median household income." << endl;
-        cout << "7. Select a state and then..." << endl;
-        cout << "8. Quit the program." << endl;
-        cout << endl;
+        
         
         cin >> userSelect;
         
@@ -121,7 +122,12 @@ int main(int argc, char** argv) {
                 case 3:
                     highUnemployment(stateArray, numStates);
                     break;
-                    
+                case 4:
+                    lowUnemployment(stateArray, numStates);
+                    break;
+                case 5:
+                    employSort(stateArray, numStates);
+                    break;
 
             }
             

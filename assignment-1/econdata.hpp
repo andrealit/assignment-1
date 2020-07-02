@@ -16,6 +16,7 @@
 #include <vector>
 #include <iomanip>
 #include <string>
+#include <cmath>
 using namespace std;
 
 struct county {
@@ -36,12 +37,16 @@ struct state {
 
 // allocates an array of a specified number of states
 struct state* allocate_states(int);
+
 // reads data for a specified number of states from input file stream into an array
 void read_state_data(struct state*,int,ifstream&);
+
 // allocates an array of a specified number of states from an input file
 struct county* allocate_counties(int);
-// reads data fo a specified number of counties from an input
+
+// reads data for a specified number of counties from an input
 void read_county_data(struct county*, int, ifstream&);
+
 // releases all data allocated to given array. call function to make sure any allocated data is freed before the program exits
 void free_state_data(struct state*, int);
 
@@ -65,5 +70,7 @@ void incomeSort(struct state*, int);
 void countyEmploySort(struct state*, int);
 void countyIncomeSort(struct state*, int);
 
+// compare_double
+bool compare_double(double x, double y, double epsilon);
 
 #endif /* econdata_hpp */
