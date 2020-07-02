@@ -23,7 +23,6 @@ int main(int argc, char** argv) {
     // Setting program variables
     int numStates;
     int userSelect;
-    bool bad_main_input = true;
     string line;
     
     // create and open infile
@@ -32,39 +31,24 @@ int main(int argc, char** argv) {
     
     cout << "Hello, testing reading data from file!" << endl;
     
-    // condition for checking file
+    // Checking file open
     if (infile.fail()) {
         cout << "The file failed to open. Check the argument you inputted." << endl;
         return 1;
     } else {
         cout << "The file opened!" << endl;
     }
-    
     cout << endl;
     
-    // Read and print out the numState
+    // Read and print out the number of states
     getline(infile, line);
     istringstream is1(line);
     is1 >> numStates;
-    cout << "Number of States = " << numStates << endl;
+//    cout << "Number of States = " << numStates << endl;
     
-    // Get State
-//    state st1;
-//    getline(infile, line);
-//    istringstream is2(line);
-//    is2 >> st1.name >> st1.unemployed2007 >> st1.unemployed2015 >> st1.medianIncome >> st1.numCounties;
-//
-//    cout << "State Name = " << st1.name << endl;
-//    cout << "2007 Unemployment % = " << st1.unemployed2007 << endl;
-//    cout << "2015 Unemployment % = " << st1.unemployed2015 << endl;
-//    cout << "Median Income = " << st1.medianIncome << endl;
-//    cout << "Number of Counties = " << st1.numCounties << endl;
-    
-    // create the array to store the states
+    // Create the array to store the states
     struct state *stateArray = allocate_states(numStates);
-  
-    //state* stateArray = new state[numStates];
-    
+      
     // loop to go through each state
     for (int i = 0; i < numStates; i++) {
 
@@ -80,43 +64,81 @@ int main(int argc, char** argv) {
     }
     
     // print out
-    for (int i = 0; i < numStates; i++) {
-        cout << "State Name = " << stateArray[i].name << endl;
-        cout << "2007 Unemployment % = " << stateArray[i].unemployed2007 << endl;
-        cout << "2015 Unemployment % = " << stateArray[i].unemployed2015 << endl;
-        cout << "Median Income = " << stateArray[i].medianIncome << endl;
-        cout << "Number of Counties = " << stateArray[i].numCounties << endl;
-        cout << endl;
+//    for (int i = 0; i < numStates; i++) {
+//        cout << "State Name = " << stateArray[i].name << endl;
+//        cout << "2007 Unemployment % = " << stateArray[i].unemployed2007 << endl;
+//        cout << "2015 Unemployment % = " << stateArray[i].unemployed2015 << endl;
+//        cout << "Median Income = " << stateArray[i].medianIncome << endl;
+//        cout << "Number of Counties = " << stateArray[i].numCounties << endl;
+//        cout << endl;
+//
+//        for (int j = 0; j < stateArray[i].numCounties; j++) {
+//
+//                    cout << "County Name = " << stateArray[i].counties[j].name << endl;
+//                    cout << "2007 Unemployment % = " << stateArray[i].counties[j].unemployed2007 << endl;
+//                    cout << "2015 Unemployment % = " << stateArray[i].counties[j].unemployed2015 << endl;
+//                    cout << "Median Income = " << stateArray[i].counties[j].medianIncome << endl;
+//                    cout << endl;
+//        }
+//    }
 
-        for (int j = 0; j < stateArray[i].numCounties; j++) {
-
-                    cout << "County Name = " << stateArray[i].counties[j].name << endl;
-                    cout << "2007 Unemployment % = " << stateArray[i].counties[j].unemployed2007 << endl;
-                    cout << "2015 Unemployment % = " << stateArray[i].counties[j].unemployed2015 << endl;
-                    cout << "Median Income = " << stateArray[i].counties[j].medianIncome << endl;
-                    cout << endl;
-        }
-    }
-
+    // WORKS UP TO THIS POINT and reads data
     
-//    // Display a MENU INTERFACE
-//    do {
-//        cout << "1. Print the state with the highest median household income." << endl;
-//        cout << "2. Print the state with the lowest median household income." << endl;
-//        cout << "3. Print the state with the highest unemployment in 2015." << endl;
-//        cout << "4. Print the state with the lowest unemployment inn 2015." << endl;
-//        cout << "5. Print the states in sorted order by change in unemployment from 2007 to 2015. (Largest decrease then largest increase)" << endl;
-//        cout << "6. Print the states in sorted order based on median household income." << endl;
-//        cout << "7. Select a state and then..." << endl;
-//        cout << "8. Quit the program." << endl;
-//
-//    } while (bad_main_input);
-//
-//
-//
-//
-//    infile.close();
-//
-//
-//    return 0;
+    
+    // Display a MENU INTERFACE
+    do {
+        cout << "MENU INTERFACE" << endl;
+        cout << "1. Print the state with the highest median household income." << endl;
+        cout << "2. Print the state with the lowest median household income." << endl;
+        cout << "3. Print the state with the highest unemployment in 2015." << endl;
+        cout << "4. Print the state with the lowest unemployment in 2015." << endl;
+        cout << "5. Print the states in sorted order by change in unemployment from 2007 to 2015. (Largest decrease then largest increase)" << endl;
+        cout << "6. Print the states in sorted order based on median household income." << endl;
+        cout << "7. Select a state and then..." << endl;
+        cout << "8. Quit the program." << endl;
+        cout << endl;
+        
+        cin >> userSelect;
+        
+        
+        // Condition for cin
+        if(cin.fail()) {
+            // clear data
+            // close?
+        }
+        
+        // When selection is made correctly
+        if (userSelect > 0 && userSelect <= 8) {
+            // switch statement for each case
+            
+            switch (userSelect) {
+                case 1:
+                    highIncome(stateArray, numStates);
+                    break;
+                case 2:
+                    lowIncome(stateArray, numStates);
+                    break;
+                case 3:
+                    highUnemployment(stateArray, numStates);
+                    break;
+                    
+
+            }
+            
+            
+            
+        } else {
+            cout << "Select a MENU between 1 to 8." << endl;
+        }
+        
+
+    } while (userSelect != 8);
+
+
+
+
+    infile.close();
+
+
+    return 0;
 }

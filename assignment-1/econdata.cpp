@@ -47,13 +47,7 @@ struct county* allocate_counties(int numCounties) {
 void read_state_data(struct state *stateArray, int numStates, ifstream &infile) {
     
     string line;
-//    infile >> s[numState].name
-//    >> s[numState].unemployed2007
-//    >> s[numState].unemployed2015
-//    >> s[numState].medianIncome
-//    >> s[numState].numCounties;
     
-
     // assign the read state data to members of the array
         getline(infile, line);
         istringstream is2(line);
@@ -74,10 +68,6 @@ void read_county_data(struct county *countyArray, int numCounties, ifstream &inf
     string line;
     
     for (int i = 0; i < numCounties; i++) {
-//        file >> c[i].name
-//        >> c[i].unemployed2007
-//        >> c[i].unemployed2015
-//        >> c[i].medianIncome;
         
         getline(infile, line);
         istringstream is3(line);
@@ -86,21 +76,21 @@ void read_county_data(struct county *countyArray, int numCounties, ifstream &inf
     }
 }
 
-///*
-//* Function: free_state_data
-//* Description: releases all the data to the given array (memory clear)
-//* Parameters: takes the struct, the number of states
-//* Pre-Conditions: memory exists
-//* Post-Conditions: none
-//*/
-//void free_state_data(struct state *stateInput, int numStates) {
-//    // using the loop to clear each state one by one here
-//    for (int i = 0; i<numStates; i++) {
-//        // clear the data here
-//        delete [] stateInput[i].counties;
-//    }
-//    delete [] stateInput;
-//}
+/*
+* Function: free_state_data
+* Description: releases all the data to the given array (memory clear)
+* Parameters: takes the struct, the number of states
+* Pre-Conditions: memory exists
+* Post-Conditions: none
+*/
+void free_state_data(struct state *stateInput, int numStates) {
+    // using the loop to clear each state one by one here
+    for (int i = 0; i<numStates; i++) {
+        // clear the data here
+        delete [] stateInput[i].counties;
+    }
+    delete [] stateInput;
+}
 
 /*
  * Function: highIncome
@@ -109,86 +99,85 @@ void read_county_data(struct county *countyArray, int numCounties, ifstream &inf
  * Preconditions: the selection must be selected
  * Postconditions: none
  */
-//void highIncome(struct state *stateInput, int numStates) {
-//    // use a loop here? the sort algorithm?
-//
-//    // what variables do you need here?
-//    // name, the income data
-//    string stateName;
-//    float incomeData;
-//    int tempInt = 0;
-//
-//    stateName = stateInput[0].name;
-//
-//    // loop is going through each state
-//    // starting from 1 because the first value in data is actually the number of the states (so irrelevant)
-//    for(int i = 1; i < numStates; ++i) {
-//        // must check if the next one is greater or less than the next?
-//        if(stateInput[tempInt].medianIncome < stateInput[i].medianIncome) {
-//            // order needs rearranging
-//            stateName = stateInput[i].name;
-//            incomeData = stateInput[i].medianIncome;
-//            tempInt = i;
-//        }
-//    }
-//
-//    cout << "\n State with Highest Median Income \n";
-//    cout << "name: " << stateName << "\n";
-//    cout << "median income: " << incomeData << "\n";
-//}
-//
-///*
-// * Function: lowIncome
-// * Description: sorts to find which state has the lowest income
-// * Parameters: takes in the state, the number of states
-// * Preconditions: the selection must be selected
-// * Postconditions: none
-// */
-//void lowIncome(struct state *stateInput, int numStates) {
-//    string stateName;
-//    float incomeData;
-//    int tempInt = 0;
-//
-//    stateName = stateInput[0].name;
-//
-//    for(int i = 1; i < numStates; numStates++) {
-//        if(stateInput[tempInt].medianIncome > stateInput[i].medianIncome) {
-//            // order is already good
-//            stateName = stateInput[i].name;
-//            tempInt = i;
-//        }
-//    }
-//
-//    cout << "\n State with Lowest Median Income \n";
-//    cout << "name: " << stateName;
-//    cout << "median income: " << incomeData << "\n";
-//}
+void highIncome(struct state *stateInput, int numStates) {
+    
+    // Variables
+    string stateName;
+    float incomeData;
+    int tempInt = 0;
+
+    stateName = stateInput[0].name;
+
+    for(int i = 0; i < numStates; i++) {
+        // must check if the next one is greater or less than the next?
+        if(stateInput[tempInt].medianIncome < stateInput[i].medianIncome) {
+            // order needs to switch
+            stateName = stateInput[i].name;
+            incomeData = stateInput[i].medianIncome;
+            tempInt = i;
+        }
+    }
+
+    cout << "State with Highest Median Income \n";
+    cout << "State Name: " << stateName << endl;
+    cout << "Median Income: " << incomeData << endl;
+    cout << endl;
+}
+
+/*
+ * Function: lowIncome
+ * Description: sorts to find which state has the lowest income
+ * Parameters: takes in the state, the number of states
+ * Preconditions: the selection must be selected
+ * Postconditions: none
+ */
+void lowIncome(struct state *stateInput, int numStates) {
+    string stateName;
+    //float incomeData;
+    int tempInt = 0;
+
+    stateName = stateInput[0].name;
+
+    for(int i = 0; i < numStates; numStates++) {
+        if(stateInput[tempInt].medianIncome > stateInput[i].medianIncome) {
+            // order is already good
+            stateName = stateInput[i].name;
+            tempInt = i;
+        }
+    }
+
+    cout << "State with Lowest Median Income \n";
+    cout << "State Name: " << stateName << endl;
+    cout << "Median Income: " << stateInput[tempInt].medianIncome << endl;
+    cout << endl;
+}
 
 /*
  * Function: highUnemployment
- * Description:
- * Parameters:
- * Preconditions:
- * Postconditions:
+ * Description: sorts to find high unemployment in 2015
+ * Parameters: takes in state, the number of states
+ * Preconditions: the selection is chosen
+ * Postconditions: none
  */
-//void highUnemployment(struct state *stateInput, int ) {
-//    string stateName;
-//    float employData;
-//    int tempInt = 0;
-//
-//    stateName = stateInput[0].name;
-//
-//    for(int i = 1; i < employData; employData++) {
-//        if(stateInput[tempInt].unemployed2015 < stateInput[i].unemployed2015) {
-//            // this means
-//            stateName = stateInput[i].name;
-//        }
-//    }
-//
-//    cout << "";
-//    cout << "";
-//    cout << "";
-//}
+void highUnemployment(struct state *stateInput, int numStates) {
+    string stateName;
+    float employData;
+    int tempInt = 0;
+
+    stateName = stateInput[0].name;
+
+    for(int i = 0; i < numStates; numStates++) {
+        if(stateInput[tempInt].unemployed2015 < stateInput[i].unemployed2015) {
+            // this means they must be switched
+            stateName = stateInput[i].name;
+            employData = stateInput[i].unemployed2015;
+        }
+    }
+
+    cout << "State with Highest 2015 Unemployment \n";
+    cout << "State Name: " << stateName << endl;
+    cout << "2015 Unemployment %: " << employData << endl;
+}
 
 
 
