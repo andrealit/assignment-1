@@ -113,9 +113,6 @@ int main(int argc, char** argv) {
                 case 7:
                     countyFunc(stateArray, numStates);
                     break;
-                case 8:
-                    break;
-                    
                     
             }
             
@@ -128,11 +125,9 @@ int main(int argc, char** argv) {
 
     } while (userSelect != 8);
 
-
-
-
     infile.close();
 
+    
 
     return 0;
 }

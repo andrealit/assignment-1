@@ -1,5 +1,10 @@
-2
-Oregon 5.2 5.7 51088 1
-Baker 5.8 6.9 38966
-California 4.2 5.1 79022 1
+3
+Oregon 5.2 5.7 51088 3
+Baker 5.8 9.1 38966
+Benton 4.1 4.3 54089
+Clackamas 4.6 3.2 5555
+California 4.2 5.1 79022 2
 Alameda 4.7 4.7 76996
+Alpine 7.9 6.0 53003
+Hawaii 4.2 3.0 33333 1
+Honolulu 3.4 4.5 20248
