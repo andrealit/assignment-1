@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
     
     // create and open infile
     ifstream infile;
-    infile.open("test_0.txt");
+    infile.open("test_data.txt");
     
     cout << "Hello, testing reading data from file!" << endl;
     

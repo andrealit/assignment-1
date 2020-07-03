@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F40B3B7D24AAF38D00117B80 /* explore_econdata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40B3B7C24AAF38D00117B80 /* explore_econdata.cpp */; };
 		F40B3B8524AAF3BB00117B80 /* econdata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F40B3B8324AAF3BB00117B80 /* econdata.cpp */; };
+		F4271B7E24AF9F4800C5CD8F /* test_data.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = F40B3B8624AB0F6F00117B80 /* test_data.txt */; };
 		F47A8F7724AD05FA0090E272 /* test_0.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = F47A8F7624ACDA910090E272 /* test_0.txt */; };
 		F47A8F7824AD06000090E272 /* test_data.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = F40B3B8624AB0F6F00117B80 /* test_data.txt */; };
 		F47A8F7A24AD07100090E272 /* test_0.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = F47A8F7624ACDA910090E272 /* test_0.txt */; };
@@ -32,6 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				F4271B7E24AF9F4800C5CD8F /* test_data.txt in CopyFiles */,
 				F47A8F7A24AD07100090E272 /* test_0.txt in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

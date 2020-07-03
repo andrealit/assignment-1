@@ -224,16 +224,13 @@ void employSort(struct state* stateInput, int numStates) {
     string statename;
     
     // outer loop
-    for(int i = 0; i < numStates; i++) {
+    for(int i = 0; i < numStates-1; i++) {
         // inner loop
-        for(int j = 0; j < numStates; j++) {
-            
-            int diffOne = stateInput[j].unemployed2007 - stateInput[j].unemployed2015;
-            int diffTwo = stateInput[j+1].unemployed2007 - stateInput[j+1].unemployed2015;
+        for(int j = 0; j < numStates-i-1; j++) {
             
             // one is less than the other (so must be switched)
             // EX: SMALLER, BIGGER
-            if(diffOne < diffTwo) {
+            if((stateInput[j].unemployed2007 - stateInput[j].unemployed2015) > (stateInput[j+1].unemployed2007 - stateInput[j+1].unemployed2015)) {
                 // store the BIGGER array in temp
                 struct state temp = stateInput[j];
                 // assign the SMALLER into the previous
@@ -245,12 +242,12 @@ void employSort(struct state* stateInput, int numStates) {
         }
     }
     
-    cout << "States Sorted by Change in Unemployment (Largest decrease to largest increase)  \n";
-    cout << ">>Largest Decrease" << endl;
+    cout << "States Sorted by Change in Unemployment (Largest increase to largest decrease)  \n";
+    cout << ">>Largest Increase" << endl;
     for (int i = 0; i < numStates; i++) {
         cout << stateInput[i].name << endl;
     }
-    cout << ">>Largest Increase" << endl;
+    cout << ">>Largest Decrease" << endl;
     cout << endl;
 }
 
@@ -265,9 +262,9 @@ void incomeSort(struct state* stateInput, int numStates) {
     string statename;
     
     // outer loop
-    for(int i = 0; i < numStates; i++) {
+    for(int i = 0; i < numStates-1; i++) {
         // inner loop
-        for(int j = 0; j < numStates; j++) {
+        for(int j = 0; j < numStates-i-1; j++) {
             if (stateInput[j].medianIncome < stateInput[j+1].medianIncome) {
                 struct state temp = stateInput[j];
                 stateInput[j] = stateInput[j+1];
@@ -428,17 +425,13 @@ void countyFunc(struct state* states, int numStates) {
                     
                 case 5: { // Sort county data based on unemployment change
                     // sort until the last one
-                    for (int i = 0; i < states[stateSelect].numCounties -1; i++) {
+                    for (int i = 0; i < states[stateSelect].numCounties-1; i++) {
                         // sort the remaining in the list for each index
-                        for (int j = 0; j < states[stateSelect].numCounties -i-1; j++) {
+                        for (int j = 0; j < states[stateSelect].numCounties-i-1; j++) {
                             // THIS WAS THE PROBLEM! Must be thorough.
-                            
-                            
-                            
-                            int diffOne = states[stateSelect].counties[j].unemployed2007 - states[stateSelect].counties[j].unemployed2015;
-                            int diffTwo = states[stateSelect].counties[j+1].unemployed2007 - states[stateSelect].counties[j+1].unemployed2015;
 
-                            if (diffOne > diffTwo) {
+                            if ((states[stateSelect].counties[j].unemployed2007 - states[stateSelect].counties[j].unemployed2015) > (states[stateSelect].counties[j+1].unemployed2007 - states[stateSelect].counties[j+1].unemployed2015)) {
+                                
                                 struct county tempC = states[stateSelect].counties[j];
                                 states[stateSelect].counties[j] = states[stateSelect].counties[j+1];
                                 states[stateSelect].counties[j+1] = tempC;
@@ -446,14 +439,7 @@ void countyFunc(struct state* states, int numStates) {
                         }
                     }
                     
-//                    for (int i = 0; i < states[stateSelect].numCounties; i++) {
-//                        int diffOne = states[stateSelect].counties[i].unemployed2007 - states[stateSelect].counties[i].unemployed2015;
-//                        int diffTwo = states[stateSelect].counties[i+1].unemployed2007 - states[stateSelect].counties[i+1].unemployed2015;
-//                        sort(states[stateSelect].counties, states[stateSelect].counties + states[stateSelect].numCounties, (diffOne > diffTwo));
-//                    }
-//
-                    
-                    cout << "County Sorted by Change in Unemployment (Largest decrease to largest increase)  \n";
+                    cout << "County Sorted by Change in Unemployment (Largest increase to largest decrease)  \n";
                     cout << ">>Largest Decrease" << endl;
                     for (int i = 0; i < states[stateSelect].numCounties; i++) {
                         cout << states[stateSelect].counties[i].name << endl;
